@@ -35,6 +35,7 @@ void BattleState::tick()
     {
         if (currentPlayerHealth <= 0)
         {
+            player->setHealth(currentPlayerHealth);
             setNextState("End");
             setFinished(true);
             return;
