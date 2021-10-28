@@ -44,16 +44,16 @@ void Enemy::tickOverworld()
         switch (direction)
         {
         case Direction::left:
-            direction = Direction::up;
+            direction = Direction::right;
             break;
         case Direction::right:
             direction = Direction::down;
             break;
         case Direction::up:
-            direction = Direction::right;
+            direction = Direction::left;
             break;
         case Direction::down:
-            direction = Direction::left;
+            direction = Direction::up;
             break;
         }
     }
