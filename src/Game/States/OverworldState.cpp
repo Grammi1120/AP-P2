@@ -55,6 +55,13 @@ void OverworldState::render()
             area->getEnemies().at(i)->renderOverworld();
         }
     }
+    ofSetColor(255,0,0);
+    ofDrawBitmapString("HP: "+to_string(player->getHealth()),(ofGetWidth()/16)-30,ofGetHeight()/16);
+    ofSetColor(255,255,0);
+    ofDrawBitmapString("Current Enemy Count: "+to_string(area->getRemainingEnemies()),(ofGetWidth()/16)-30,ofGetHeight()/16+20);
+    ofSetColor(0,0,255);
+    ofDrawBitmapString("Area: "+area->getName(),(ofGetWidth()/16)-30,ofGetHeight()/16+40);
+    ofSetColor(255,255,255);
 }
 
 void OverworldState::keyPressed(int key)
