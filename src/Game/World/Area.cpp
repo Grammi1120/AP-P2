@@ -11,7 +11,7 @@ Area::Area(Area *nextArea, string areaImagePath, string areaMusicPath, string ar
     this->name=name;
 }
 void Area::resetEnemies(){
-        for  (int i = 0; i < enemies.size(); i++){
+        for(unsigned int i = 0; i < enemies.size(); i++){
         enemies.at(i)->revive();
     }
 }

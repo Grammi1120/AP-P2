@@ -85,7 +85,7 @@ void OverworldState::keyReleased(int key)
     }
     
     if((key == 'R')|| (key == 'r')){
-        for (int i = 0; i < area->getEnemies().size(); i++){
+        for (unsigned int i = 0; i < area->getEnemies().size(); i++){
         area->getEnemies()[i]->revive();
         }
     area->getEnemies().back()->kill();
