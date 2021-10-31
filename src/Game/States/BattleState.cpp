@@ -26,7 +26,10 @@ BattleState::BattleState(Player *player, Area *area)
 void BattleState::startBattle(Enemy *enemy)
 {
     this->enemy = enemy;
-    currentEnemyHealth = enemy->getHealth();
+    if(!isPaused){
+        currentEnemyHealth = enemy->getHealth();
+        isPaused = true;
+    }
 }
 
 void BattleState::tick()
@@ -35,13 +38,13 @@ void BattleState::tick()
     {
         if (currentPlayerHealth <= 0)
         {
-            player->setHealth(currentPlayerHealth);
             setNextState("End");
             setFinished(true);
             return;
         }
         else if (currentEnemyHealth <= 0)
         {
+            player->setHealth(currentPlayerHealth);
             setNextState("Win");
             setFinished(true);
             return;
@@ -230,6 +233,17 @@ void BattleState::keyPressed(int key)
 {
     if (canInteract)
     {
+          if((key == 'P')||(key == 'p')){
+        this->setFinished(true);
+        this->setNextState("PausedState");
+        }
+
+        if((key == 'H')|| (key == 'h')){
+            if(currentPlayerHealth < 100){
+                currentPlayerHealth = 100;  
+            }
+        }
+
         if (key == OF_KEY_LEFT || key == 'a')
         {
             buttonChange.play();

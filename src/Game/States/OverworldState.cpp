@@ -7,6 +7,7 @@ OverworldState::OverworldState(Player *player, Area *area)
     loadArea(area);
     music.setVolume(0.25);
     music.setLoop(true);
+    afterLoadSt="Battle";
 }
 
 void OverworldState::loadArea(Area *area)
@@ -31,7 +32,7 @@ void OverworldState::tick()
             if (player->collides(area->getEnemies().at(i)))
             {
                 setEnemy(area->getEnemies().at(i));
-                setNextState("Battle");
+                setNextState("LoadingState");
                 setFinished(true);
             }
         }
@@ -59,12 +60,29 @@ void OverworldState::render()
 
 void OverworldState::keyPressed(int key)
 {
+    if((key == 'P')||(key == 'p')){
+        this->setFinished(true);
+        this->setNextState("PausedState");
+    }
     player->keyPressed(key);
 }
 
 void OverworldState::keyReleased(int key)
 {
     player->keyReleased(key);
+    if((key == 'H')|| (key == 'h')){
+        if(player->getHealth()<100){
+            player->setHealth(100);
+          
+        }
+    }
+    
+    if((key == 'R')|| (key == 'r')){
+        for (int i = 0; i < area->getEnemies().size(); i++){
+        area->getEnemies()[i]->revive();
+        }
+    area->getEnemies().back()->kill();
+    }
 }
 
 void OverworldState::mousePressed(int x, int y, int button)
