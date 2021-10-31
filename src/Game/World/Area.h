@@ -3,7 +3,6 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "OverworldCamera.h"
-
 class Area 
 {
     private:
@@ -13,9 +12,10 @@ class Area
         ofPoint entrancePosition;
         std::vector<Enemy*> enemies;
         Area *nextArea;
+        string name;
 
     public:
-        Area(Area *nextArea, string areaImagePath, string areaMusicPath, string areaStagePath, ofPoint entrancePosition, vector<Enemy*> enemies);
+        Area(string name,Area *nextArea, string areaImagePath, string areaMusicPath, string areaStagePath, ofPoint entrancePosition, vector<Enemy*> enemies);
         void resetEnemies();
         ofImage getImage() { return areaImage;};
         ofSoundPlayer getMusic() { return areaMusic;};
@@ -25,5 +25,6 @@ class Area
         vector<Enemy*> getEnemies() { return enemies;};
         int getRemainingEnemies();
         Area* getNextArea() { return nextArea;};
+        string getName(){return name;};
         
 };
