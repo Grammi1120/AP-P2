@@ -1,7 +1,6 @@
 #include "Player.h"
 
-Player::Player(int health, int baseDamage) : Entity(INIT_X, INIT_Y, 64, 64, 64, 164, 192, 192, health, baseDamage, "images/entities/player/downframes/player-ow-front1.png", "images/entities/player/fightingframes/player-f1.png")
-{
+Player::Player(int health, int baseDamage) : Fighter(INIT_X, INIT_Y, 64, 64, 64, 164, 192, 192, health, baseDamage, "images/entities/player/downframes/player-ow-front1.png", "images/entities/player/fightingframes/player-f1.png"){
 
     vector<ofImage> downFrames = {};
     vector<ofImage> upFrames = {};
@@ -9,6 +8,7 @@ Player::Player(int health, int baseDamage) : Entity(INIT_X, INIT_Y, 64, 64, 64, 
     vector<ofImage> rightFrames = {};
     vector<ofImage> fightingFrames = {};
     ofImage temp;
+    maxHealth = health;
 
     for (int i = 1; i < 5; i++)
     {
@@ -93,10 +93,8 @@ void Player::tickOverworld()
     }
 }
 
-void Player::tickFighting()
-{
-    fightingSprite = fighting->getCurrentFrame();
-    fighting->tick();
+void Player::tickFighting(){
+    Fighter::tickFighting();
 }
 
 void Player::renderOverworld()
