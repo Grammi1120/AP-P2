@@ -2,6 +2,8 @@
 
 WinState::WinState() {
     screen.load("images/ui/winscreen.png");
+    music.load("audio/ui/beep.wav");
+    afterLoadSt = "Overworld";
 
 }
 
@@ -14,7 +16,7 @@ void WinState::render(){
 }
 
 void WinState::keyPressed(int key) {
-    setNextState("Overworld");
+    setNextState("LoadingState");
     setFinished(true);
 }
 

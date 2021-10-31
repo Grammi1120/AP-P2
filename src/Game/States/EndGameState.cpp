@@ -3,7 +3,9 @@
 EndGameState::EndGameState() {
     loseScreen.load("images/ui/losescreen.png");
     winScreen.load("images/ui/winscreen.png");
+    music.load("audio/ui/beep.wav");
     win = false;
+    afterLoadSt = "Title";
 }
 
 void EndGameState::tick() {
@@ -17,7 +19,7 @@ void EndGameState::render(){
 }
 
 void EndGameState::keyPressed(int key) {
-    setNextState("Title");
+    setNextState("LoadingState");
     setFinished(true);
 }
 

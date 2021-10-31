@@ -13,6 +13,7 @@ TitleState::TitleState() {
     music.setLoop(true);
     music.setVolume(0.25);
     music.play();
+    afterLoadSt = "Overworld";
 }
 
 void TitleState::tick() {
@@ -25,7 +26,7 @@ void TitleState::render(){
 }
 
 void TitleState::keyPressed(int key) {
-    setNextState("Overworld");
+    setNextState("LoadingState");
     setFinished(true);
 }
 
