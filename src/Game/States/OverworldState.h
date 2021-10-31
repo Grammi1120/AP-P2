@@ -5,6 +5,8 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "OverworldCamera.h"
+#include "PausedState.h"
+#include "LoadingState.h"
 
 class OverworldState : public State
 {

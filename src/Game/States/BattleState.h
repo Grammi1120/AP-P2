@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Area.h"
+#include "Fighter.h"
 enum Move {rock, paper, scissors, none};
 enum Outcome {win, lose, draw};
 class BattleState : public State {
@@ -42,5 +43,6 @@ class BattleState : public State {
         void mousePressed(int x, int y, int button);
         void reset();
         void resetPlayer();
+        bool isPaused = false;
 
 };

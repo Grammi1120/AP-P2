@@ -39,10 +39,13 @@ class State {
 		void setNextState(string nextState){
 			this->nextState = nextState;
 		}
+		string getAfterLoadSt(){
+			return afterLoadSt;
+		}
 
 	protected:
 		string nextState;
 		ofSoundPlayer music;
 		bool finished = false;
-
+		string afterLoadSt;
 };
