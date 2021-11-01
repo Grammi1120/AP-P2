@@ -46,5 +46,5 @@ class Player : public Fighter {
         bool getCanWalkDown() { return walkingDown; };
         bool getCanWalkUp() { return walkingUp; };
         int getSpeed() { return speed; };
-        int maxHealth;
+        int allHealth;
 };

@@ -30,6 +30,11 @@ void BattleState::startBattle(Enemy *enemy)
         currentEnemyHealth = enemy->getHealth();
         isPaused = true;
     }
+    
+    if(!hasHealed){
+        currentEnemyHealth = enemy->getHealth();
+        hasHealed=true;
+    }
 }
 
 void BattleState::tick()
@@ -120,7 +125,7 @@ void BattleState::renderHealthBar()
 
     for (int i = 0; i < 3; i++)
     {
-        double playerHealthRatio = (double)currentPlayerHealth / (double)player->getHealth();
+        double playerHealthRatio = (double)currentPlayerHealth / (double)player->allHealth;
         double enemyHealthRatio = (double)currentEnemyHealth / (double)enemy->getHealth();
         if(playerHealthRatio < 0){
             playerHealthRatio = 0;
