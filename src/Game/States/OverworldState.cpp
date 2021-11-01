@@ -89,6 +89,7 @@ void OverworldState::tick()
         KeyTimer--;
         if(KeyTimer<=0){
             KeyTimer=60;
+            eKey=false;
             f1->show=false;
         }
     }
