@@ -4,6 +4,7 @@
 #include "Area.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Friend.h"
 #include "OverworldCamera.h"
 #include "PausedState.h"
 #include "LoadingState.h"
@@ -19,6 +20,9 @@ class OverworldState : public State
         std::vector<Enemy*> enemies;
         StaticEntity *staticEntity;
         Enemy *enemy;
+        Friend *FriendTest;
+        bool eKey=false;
+        int KeyTimer = 60;
         
     public:
         OverworldState(Player *player, Area *area);
@@ -28,6 +32,7 @@ class OverworldState : public State
         void setStaticEntity(StaticEntity *staticEntity) {this->staticEntity = staticEntity;};
         void loadArea(Area *Area);
         Area* getArea() { return area;};
+        Friend* getFriend() { return FriendTest; };
         void tick();
         void render();
         void keyPressed(int key);

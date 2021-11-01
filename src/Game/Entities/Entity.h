@@ -14,9 +14,9 @@ class Entity {
         int getOY() { return oy; };
         int getOW() { return ow; };
         int getOH() { return oh; };
-        ofRectangle getBounds();
-        ofRectangle getBounds(int ox, int oy);
-        bool collides(Entity* entity);
-        void setOX(int ox) { this-> ox = ox; };
-        void setOY(int oy) { this-> oy = oy; };
+        virtual ofRectangle getBounds();
+        virtual ofRectangle getBounds(int ox, int oy);
+        virtual bool collides(Entity* entity);
+        virtual void setOX(int ox) { this-> ox = ox; };
+        virtual void setOY(int oy) { this-> oy = oy; };
 };

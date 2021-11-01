@@ -43,6 +43,5 @@ class BattleState : public State {
         void mousePressed(int x, int y, int button);
         void reset();
         void resetPlayer();
-        bool isPaused = false;
-
+        bool isPaused = false;    
 };

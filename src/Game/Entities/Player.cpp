@@ -44,30 +44,32 @@ void Player::tickOverworld()
         case 'a':
             direction = Direction::left;
             if (this->ox - speed >= CENTER_X)
-                this->ox -= speed;
             walkLeft->tick();
+                if(getCanWalkLeft()){
+                this->ox -= speed;}
             overworldSprite = walkLeft->getCurrentFrame();
             break;
         case 'd':
             direction = Direction::right;
             if (this->ox + speed <= OXDIMENSION - CENTER_X)
-                this->ox += speed;
-
+                if(getCanWalkRight()){
+                this->ox += speed;}
             walkRight->tick();
             overworldSprite = walkRight->getCurrentFrame();
             break;
         case 'w':
             direction = Direction::up;
             if (this->oy - speed >= CENTER_Y)
-                this->oy -= speed;
+                if(getCanWalkUp()){
+                this->oy -= speed;}
             walkUp->tick();
             overworldSprite = walkUp->getCurrentFrame();
-
             break;
         case 's':
             direction = Direction::down;
             if (this->oy + speed <= OYDIMENSION - CENTER_Y)
-                this->oy += speed;
+                if(getCanWalkDown()){
+                this->oy += speed;}
             walkDown->tick();
             overworldSprite = walkDown->getCurrentFrame();
             break;

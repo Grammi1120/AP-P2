@@ -1,42 +1,37 @@
 #pragma once
 
-#include "Entity.h" 
-#include "Animation.h"
+#include "Entity.h"
 #include "Fighter.h"
+#include "Animation.h"
 
-#define INIT_X 100
-#define INIT_Y 100
-#define CENTER_X 288
-#define CENTER_Y 208
+class Friend: public Entity {
 
-#define OXDIMENSION 2688
-#define OYDIMENSION 2560
-
-
-class Player : public Fighter {
     private:
-        Direction direction = Direction::up;
-        int speed = 8;
-        bool walking = false;
+        bool walking=false;
+        int speed=8;
+        Direction direction=Direction::down;
+        int renderX=1000, renderY=1000;
         Animation *walkUp;
         Animation *walkDown;
         Animation *walkLeft;
         Animation *walkRight;
-        vector<char> pressedKeys;
-        bool walkingDown=true;
-        bool walkingLeft=true;
-        bool walkingRight=true;
-        bool walkingUp=true;
-    
+        string ID, EntityName;
+        int MoveTimer;
+        ofImage sprite;
+        bool walkingLeft=true, walkingRight=true, walkingUp=true, walkingDown=true, DirectionChange=true;
     public:
-        Player(int health, int baseDamage);
-        ~Player();
+        Friend(string ID, string EntityName, int ox, int oy, int ow, int oh);
         void tickOverworld();
-        void tickFighting();
         void renderOverworld();
         void keyPressed(int key);
         void keyReleased(int key);
         void reset();
+        int getOX() { return ox; };
+        int getOY() { return oy; };
+        void setRenderX(int x) { renderX=x; };
+        void setRenderY(int y) { renderY=y; };
+        string getID() { return ID; };
+        ofImage getSprite() { return overworldSprite; };
         void setCanWalkLeft(bool walkingLeft) { this->walkingLeft=walkingLeft; };
         void setCanWalkRight(bool walkingRight) { this->walkingRight=walkingRight; };
         void setCanWalkUp(bool walkingUp) { this->walkingUp=walkingUp; };
@@ -45,6 +40,7 @@ class Player : public Fighter {
         bool getCanWalkRight() { return walkingRight; };
         bool getCanWalkDown() { return walkingDown; };
         bool getCanWalkUp() { return walkingUp; };
-        int getSpeed() { return speed; };
-        int maxHealth;
+        int getSpeed() { return speed; }
+        bool show=false;
+
 };
