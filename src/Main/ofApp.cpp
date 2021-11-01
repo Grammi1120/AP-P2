@@ -51,6 +51,15 @@ void ofApp::setupAreas()
 	enemies1.push_back(area1Enemy1);
 	enemies1.push_back(area1Enemy2);
 	enemies1.push_back(area1Enemy3);
+	
+	vector<StaticEntity *>StaticE1;
+	StaticEntity *area1StaticEntity1 = new StaticEntity("60","static1",4 * 300, 4 * 546, 200, 200,"images/entities/static1/upframes/static1-ow-up1.png");
+	StaticEntity *area1StaticEntity2 = new StaticEntity("60","static1",4 * 264, 4* 400, 200, 200,"images/entities/static1/upframes/static1-ow-up1.png");
+	StaticEntity *area1StaticEntity3 = new StaticEntity("60","static1",4 * 270, 4 * 500, 200, 200,"images/entities/static1/upframes/static1-ow-up1.png");
+	
+	StaticE1.push_back(area1StaticEntity1);
+	StaticE1.push_back(area1StaticEntity2);
+	StaticE1.push_back(area1StaticEntity3);
 	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, "Area 1");
 	currentArea = area1;
 }

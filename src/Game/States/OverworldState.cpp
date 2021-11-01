@@ -24,6 +24,13 @@ void OverworldState::loadArea(Area *area)
 void OverworldState::tick()
 {
     player->tickOverworld();
+
+    for(StaticEntity* StaticEntity1 : area->getStaticEntity()) {
+        StaticEntity1->tickOverworld();
+    }
+
+
+
     for (unsigned int i = 0; i < area->getEnemies().size(); i++)
     {
         if (!area->getEnemies().at(i)->isDead())
@@ -56,6 +63,16 @@ void OverworldState::render()
             area->getEnemies().at(i)->renderOverworld();
         }
     }
+    for (StaticEntity* StaticE1 : area->getStaticEntity())
+    {
+        int playerDistanceX = StaticE1->getOX() - camera->getPlayerX();
+        int playerDistanceY = StaticE1->getOY() - camera->getPlayerY();
+        StaticE1->setRenderX(camera->getDimensionX()/ 2 + playerDistanceX);
+        StaticE1->setRenderY(camera->getDimensionY()/ 2 + playerDistanceY);
+        StaticE1->renderOverworld();
+    }
+
+
     ofSetColor(255,0,0);
     ofDrawBitmapString("HP: "+to_string(player->getHealth()),(ofGetWidth()/16)-30,ofGetHeight()/16);
     ofSetColor(255,255,0);

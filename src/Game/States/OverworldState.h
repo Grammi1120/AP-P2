@@ -7,6 +7,7 @@
 #include "OverworldCamera.h"
 #include "PausedState.h"
 #include "LoadingState.h"
+#include "Static.h"
 
 class OverworldState : public State
 {
@@ -16,6 +17,7 @@ class OverworldState : public State
         OverworldCamera *camera;
         Area *area;
         std::vector<Enemy*> enemies;
+        StaticEntity *staticEntity;
         Enemy *enemy;
         
     public:
@@ -23,6 +25,7 @@ class OverworldState : public State
         Player* getPlayer() { return player;};
         void setEnemy(Enemy *enemy) { this->enemy = enemy;};
         Enemy* getEnemy() { return enemy;};
+        void setStaticEntity(StaticEntity *staticEntity) {this->staticEntity = staticEntity;};
         void loadArea(Area *Area);
         Area* getArea() { return area;};
         void tick();
