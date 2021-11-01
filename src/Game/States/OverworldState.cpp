@@ -37,6 +37,64 @@ void OverworldState::tick()
             }
         }
     }
+    player->setCanWalkLeft(true);
+    player->setCanWalkRight(true);
+    player->setCanWalkUp(true);
+    player->setCanWalkDown(true);
+
+    for(Friend* f:area->getFriends()){
+           f->tickOverworld();
+        }
+  
+    for(Friend* f:area->getFriends()){
+        f->setCanWalkLeft(true);
+        f->setCanWalkRight(true);
+        f->setCanWalkUp(true);
+        f->setCanWalkDown(true);
+        if(player->getBounds(player->getOX()-player->getSpeed(), player->getOY()).intersects(f->getBounds())){
+            player->setCanWalkLeft(false);
+            f->setCanWalkRight(false);
+            f->setCanWalkDown(false);
+            f->setCanWalkUp(false);
+            f->setCanWalkLeft(false);
+            eKey=true;
+        }
+        if(player->getBounds(player->getOX()+player->getSpeed(), player->getOY()).intersects(f->getBounds())){
+            player->setCanWalkRight(false);
+            f->setCanWalkRight(false);
+            f->setCanWalkDown(false);
+            f->setCanWalkUp(false);
+            f->setCanWalkLeft(false);
+            eKey=true;
+        }
+        if(player->getBounds(player->getOX(),player->getOY()-player->getSpeed()).intersects(f->getBounds())){
+            player->setCanWalkUp(false);
+            f->setCanWalkRight(false);
+            f->setCanWalkDown(false);
+            f->setCanWalkUp(false);
+            f->setCanWalkLeft(false);
+            eKey=true;
+        }
+        if(player->getBounds(player->getOX(),player->getOY()+player->getSpeed()).intersects(f->getBounds())){
+            player->setCanWalkDown(false);
+            f->setCanWalkRight(false);
+            f->setCanWalkDown(false);
+            f->setCanWalkUp(false);
+            f->setCanWalkLeft(false);
+            eKey=true;
+        }
+    }
+    for(Friend* f1: area->getFriends()){
+        if(f1->show){
+        KeyTimer--;
+        if(KeyTimer<=0){
+            KeyTimer=60;
+            f1->show=false;
+        }
+    }
+    }
+
+
     camera->tick();
 }
 
@@ -63,6 +121,14 @@ void OverworldState::render()
     ofSetColor(0,0,255);
     ofDrawBitmapString("Area: "+area->getName(),(ofGetWidth()/16)-30,ofGetHeight()/16+40);
     ofSetColor(255,255,255);
+
+    for(unsigned int i=0;i<area->getFriends().size(); i++){
+        int PlayerReachX=area->getFriends().at(i)->getOX()-camera->getPlayerX();
+        int PlayerReachY=area->getFriends().at(i)->getOY()-camera->getPlayerY();
+        area->getFriends().at(i)->setRenderY(camera->getDimensionY()/2+PlayerReachY);
+        area->getFriends().at(i)->setRenderX(camera->getDimensionX()/2+PlayerReachX);
+        area->getFriends().at(i)->renderOverworld();
+    }
 }
 
 void OverworldState::keyPressed(int key)
@@ -72,6 +138,15 @@ void OverworldState::keyPressed(int key)
         this->setNextState("PausedState");
     }
     player->keyPressed(key);
+    if(key=='e'||key=='E'){
+        if(eKey)
+        {
+            for(Friend* f1:area->getFriends())
+            {
+                f1->show=true;
+            }
+        }
+    }
 }
 
 void OverworldState::keyReleased(int key)
