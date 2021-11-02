@@ -44,9 +44,9 @@ void Player::tickOverworld()
         case 'a':
             direction = Direction::left;
             if (this->ox - speed >= CENTER_X)
-            walkLeft->tick();
                 if(getCanWalkLeft()){
                 this->ox -= speed;}
+             walkLeft->tick();
             overworldSprite = walkLeft->getCurrentFrame();
             break;
         case 'd':
@@ -101,9 +101,9 @@ void Player::tickFighting(){
 
 void Player::renderOverworld()
 {
-    // uncomment this to see the coordinates of your player
-    // ofDrawBitmapString("ow:" + to_string(ox), 100, 60);
-    // ofDrawBitmapString("oy:" + to_string(oy), 100, 80);
+     //uncomment this to see the coordinates of your player
+     ofDrawBitmapString("ow:" + to_string(ox), 100, 60);
+     ofDrawBitmapString("oy:" + to_string(oy), 100, 80);
     overworldSprite.draw(CENTER_X, CENTER_Y, ow, oh);
 }
 

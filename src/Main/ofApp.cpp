@@ -30,6 +30,7 @@ void ofApp::setupAreas()
 
 	vector<Enemy *> enemies2;
 	vector<Friend*> AshKetchup;
+	vector<StaticEntity *>StaticE2;
 	ofPoint entrancePosition2(4 * 110, 4 * 116);
 	Enemy *area2Enemy1 = new Enemy("21", 30, 6, "enemy2", 4 * 120, 4 * 342,"images/entities/enemy2/fightingframes/enemy2-f1.png","images/entities/enemy2/downframes/enemy2-ow-down1.png");
 	Enemy *area2Enemy2 = new Enemy("22", 30, 6, "enemy2", 4 * 254, 4 * 130,"images/entities/enemy2/fightingframes/enemy2-f1.png","images/entities/enemy2/downframes/enemy2-ow-down1.png");
@@ -51,7 +52,15 @@ void ofApp::setupAreas()
 	enemies2.push_back(area2Boss);
 	area2Boss->kill();
 
-	area2 = new Area(NULL, "images/areas/area2.png", "audio/ice.wav", "images/stages/stage2.png", entrancePosition2, enemies2, "Area 2", AshKetchup); 
+	StaticEntity *area2StaticEntity1 = new StaticEntity("50","static2",4 * 200, 4 * 250, 200, 200,"images/entities/static2/upframes/static2-ow-up1.png");
+	StaticEntity *area2StaticEntity2 = new StaticEntity("50","static2",4 * 200, 4 * 200, 200, 200,"images/entities/static2/upframes/static2-ow-up1.png");
+
+ 
+	StaticE2.push_back(area2StaticEntity1);
+	StaticE2.push_back(area2StaticEntity2);
+
+	area2 = new Area(NULL, "images/areas/area2.png", "audio/ice.wav", "images/stages/stage2.png", entrancePosition2, enemies2, "Area 2", AshKetchup, StaticE2);
+
 	vector<Enemy *> enemies1;
 	ofPoint entrancePosition1(4 * 414, 4 * 566);
 	Enemy *area1Enemy1 = new Enemy("11", 20, 4, "enemy1", 4 * 480, 4 * 432,"images/entities/enemy1/fightingframes/enemy1-f1.png","images/entities/enemy1/downframes/enemy1-ow-down1.png");
@@ -71,14 +80,13 @@ void ofApp::setupAreas()
 	StaticE1.push_back(area1StaticEntity1);
 	StaticE1.push_back(area1StaticEntity2);
 	StaticE1.push_back(area1StaticEntity3);
-	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, "Area 1", AshKetchup);
 	AshKetchup.push_back(area1Friend1);
 
 	Boss *area1Boss=new Boss("73",40,8,"boss1",4*120,4*254,"images/entities/boss1/fightingframes/boss1-f1.png","images/entities/boss1/downframes/boss1-ow-down1.png");
 	enemies1.push_back(area1Boss);
 	area1Boss->kill();
 
-	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, "Area 1", AshKetchup);
+	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, "Area 1", AshKetchup, StaticE1);
 	currentArea = area1;
 }
 

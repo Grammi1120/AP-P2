@@ -48,6 +48,31 @@ void OverworldState::tick()
     player->setCanWalkRight(true);
     player->setCanWalkUp(true);
     player->setCanWalkDown(true);
+    
+    for(StaticEntity* coll : area->getStaticEntity())
+    {
+        if(player->getBounds(player->getOX() -player->getSpeed() ,player->getOY()).intersects(coll->getBounds()))
+        {
+            player->setCanWalkLeft(false);
+
+        }
+          if(player->getBounds(player->getOX() +player->getSpeed() ,player->getOY()).intersects(coll->getBounds()))
+        {
+            player->setCanWalkRight(false);
+
+        }
+          if(player->getBounds(player->getOX() ,player->getOY() -player->getSpeed()).intersects(coll->getBounds()))
+        {
+            player->setCanWalkUp(false);
+
+        }
+          if(player->getBounds(player->getOX() ,player->getOY() +player->getSpeed()).intersects(coll->getBounds()))
+        {
+            player->setCanWalkDown(false);
+
+        }
+
+    }
 
     for(Friend* f:area->getFriends()){
            f->tickOverworld();
@@ -140,13 +165,13 @@ void OverworldState::render()
             area->getEnemies().at(i)->renderOverworld();
         }
     }
-    for (StaticEntity* StaticE1 : area->getStaticEntity())
+    for (StaticEntity* staticEntity1 : area->getStaticEntity())
     {
-        int playerDistanceX = StaticE1->getOX() - camera->getPlayerX();
-        int playerDistanceY = StaticE1->getOY() - camera->getPlayerY();
-        StaticE1->setRenderX(camera->getDimensionX()/ 2 + playerDistanceX);
-        StaticE1->setRenderY(camera->getDimensionY()/ 2 + playerDistanceY);
-        StaticE1->renderOverworld();
+        int playerDistanceX = staticEntity1->getOX() - camera->getPlayerX();
+        int playerDistanceY = staticEntity1->getOY() - camera->getPlayerY();
+        staticEntity1->setRenderX(camera->getDimensionX()/ 2 + playerDistanceX);
+        staticEntity1->setRenderY(camera->getDimensionY()/ 2 + playerDistanceY);
+        staticEntity1->renderOverworld();
     }
 
 
