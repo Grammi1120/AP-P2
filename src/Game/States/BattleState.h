@@ -45,4 +45,5 @@ class BattleState : public State {
         void reset();
         void resetPlayer();
         bool isPaused = false;    
+        bool hasHealed = false;
 };

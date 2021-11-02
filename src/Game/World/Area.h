@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include "Friend.h"
 #include "OverworldCamera.h"
+#include "Static.h"
 class Area 
 {
     private:
@@ -11,6 +12,7 @@ class Area
         ofSoundPlayer areaMusic;
         ofImage areaStage;
         ofPoint entrancePosition;
+        std::vector<StaticEntity*>staticEntity;
         std::vector<Enemy*> enemies;
         Area *nextArea;
         std::vector<Friend*> Friends;
@@ -30,5 +32,10 @@ class Area
         void setFriends(std::vector<Friend*> friends) { this->Friends = Friends; };
         vector<Friend*> getFriends() { return Friends; };
         string getName() { return name; };
+<<<<<<< HEAD
         bool BossIsDead=false;
+=======
+        void setStaticEntity( std::vector<StaticEntity*>) {this->staticEntity = staticEntity;};
+        vector<StaticEntity*>getStaticEntity() {return staticEntity;};
+>>>>>>> 8d87fa689a97bcc918993c3c896d9b3fe0307b88
 };

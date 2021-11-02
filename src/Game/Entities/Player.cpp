@@ -8,7 +8,7 @@ Player::Player(int health, int baseDamage) : Fighter(INIT_X, INIT_Y, 64, 64, 64,
     vector<ofImage> rightFrames = {};
     vector<ofImage> fightingFrames = {};
     ofImage temp;
-    maxHealth = health;
+    allHealth = health;
 
     for (int i = 1; i < 5; i++)
     {
