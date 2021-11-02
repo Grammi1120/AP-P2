@@ -20,6 +20,7 @@
         "string": "cpp",
         "new": "cpp",
         "algorithm": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "iosfwd": "cpp"
     },
 }
