@@ -71,7 +71,7 @@ void ofApp::setupAreas()
 	StaticE1.push_back(area1StaticEntity1);
 	StaticE1.push_back(area1StaticEntity2);
 	StaticE1.push_back(area1StaticEntity3);
-	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, "Area 1");
+	area1 = new Area(area2, "images/areas/area1.png", "audio/forest.wav", "images/stages/stage1.png", entrancePosition1, enemies1, "Area 1", AshKetchup);
 	AshKetchup.push_back(area1Friend1);
 
 	Boss *area1Boss=new Boss("73",40,8,"boss1",4*120,4*254,"images/entities/boss1/fightingframes/boss1-f1.png","images/entities/boss1/downframes/boss1-ow-down1.png");
