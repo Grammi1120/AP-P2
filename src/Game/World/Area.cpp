@@ -15,6 +15,8 @@ void Area::resetEnemies(){
         for(unsigned int i = 0; i < enemies.size(); i++){
         enemies.at(i)->revive();
     }
+    BossIsDead=false;
+    enemies.back()->kill();
 }
 
 int Area::getRemainingEnemies(){

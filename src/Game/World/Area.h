@@ -30,4 +30,5 @@ class Area
         void setFriends(std::vector<Friend*> friends) { this->Friends = Friends; };
         vector<Friend*> getFriends() { return Friends; };
         string getName() { return name; };
+        bool BossIsDead=false;
 };

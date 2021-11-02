@@ -94,7 +94,25 @@ void OverworldState::tick()
         }
     }
     }
-
+    if(area->getRemainingEnemies()==0 && !area->BossIsDead){
+        area->getEnemies().back()->revive();
+    }
+    for(unsigned int i=0; i<area->getEnemies().size(); i++){
+        if(!area->getEnemies().at(i)->isDead()){
+            Enemy* enemy=area->getEnemies().at(i);
+            enemy->tickOverworld();
+            if(player->collides(area->getEnemies().at(i))){
+                setEnemy(area->getEnemies().at(i));
+                setNextState("LoadingState");
+                setFinished(true);
+                Boss* boss=dynamic_cast<Boss*> (enemy);
+                if(boss!=nullptr)
+                {
+                    area->BossIsDead=true;
+                }
+            }
+        }
+    }
 
     camera->tick();
 }

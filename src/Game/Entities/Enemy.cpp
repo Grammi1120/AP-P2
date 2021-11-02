@@ -1,6 +1,6 @@
 #include "Enemy.h"
 
-Enemy::Enemy(string id, int health, int baseDamage, string entityName, int ox, int oy) : Fighter(ox, oy, 64, 64, 400, 164, 192, 192, health, baseDamage, "images/entities/enemy1/fightingframes/enemy1-f1.png", "images/entities/enemy1/downframes/enemy1-ow-down1.png")
+Enemy::Enemy(string id, int health, int baseDamage, string entityName, int ox, int oy, string fightingPath, string overworldPath) : Fighter(ox, oy, 64, 64, 400, 164, 192, 192, health, baseDamage, "images/entities/enemy1/fightingframes/enemy1-f1.png", "images/entities/enemy1/downframes/enemy1-ow-down1.png")
 {
     this->id = id;
     this->entityName = entityName;
@@ -11,6 +11,7 @@ Enemy::Enemy(string id, int health, int baseDamage, string entityName, int ox, i
     vector<ofImage> rightFrames = {};
     vector<ofImage> fightingFrames = {};
     ofImage temp;
+    maxhealth=health;
 
     for (int i = 1; i < 5; i++)
     {

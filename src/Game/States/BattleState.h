@@ -4,6 +4,7 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "Area.h"
+#include "Boss.h"
 #include "Fighter.h"
 enum Move {rock, paper, scissors, none};
 enum Outcome {win, lose, draw};

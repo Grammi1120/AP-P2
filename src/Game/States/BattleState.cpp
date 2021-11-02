@@ -44,10 +44,25 @@ void BattleState::tick()
         }
         else if (currentEnemyHealth <= 0)
         {
-            player->setHealth(currentPlayerHealth);
-            setNextState("Win");
-            setFinished(true);
-            return;
+            Boss* boss=dynamic_cast<Boss*> (enemy);
+            if(boss!=nullptr){
+                if(boss->getHasPhase()){
+                    player->setHealth(currentPlayerHealth);
+                    setNextState("Win");
+                    setFinished(true);
+                    return;
+                }
+                else
+                {
+                    boss->phase();
+                    currentEnemyHealth=boss->maxhealth;
+                }
+            }
+            else{
+                player->setHealth(currentPlayerHealth);
+                setNextState("Win");
+                setFinished(true);
+            }
         }
     }
 
@@ -120,8 +135,8 @@ void BattleState::renderHealthBar()
 
     for (int i = 0; i < 3; i++)
     {
-        double playerHealthRatio = (double)currentPlayerHealth / (double)player->getHealth();
-        double enemyHealthRatio = (double)currentEnemyHealth / (double)enemy->getHealth();
+        double playerHealthRatio = (double)currentPlayerHealth / (double)player->maxHealth;
+        double enemyHealthRatio = (double)currentEnemyHealth / (double)enemy->maxhealth;
         if(playerHealthRatio < 0){
             playerHealthRatio = 0;
         }
