@@ -32,10 +32,7 @@ class Area
         void setFriends(std::vector<Friend*> friends) { this->Friends = Friends; };
         vector<Friend*> getFriends() { return Friends; };
         string getName() { return name; };
-<<<<<<< HEAD
         bool BossIsDead=false;
-=======
         void setStaticEntity( std::vector<StaticEntity*>) {this->staticEntity = staticEntity;};
         vector<StaticEntity*>getStaticEntity() {return staticEntity;};
->>>>>>> 8d87fa689a97bcc918993c3c896d9b3fe0307b88
 };
